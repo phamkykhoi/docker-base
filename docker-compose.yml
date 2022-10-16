@@ -84,11 +84,3 @@ services:
       - ./docker/volumes/redis:/data
     ports:
       - "6379:6379"
-  # Mailing Server
-  mailhog:
-    image: mailhog/mailhog:latest
-    logging:
-      driver: "none"
-    ports:
-      - "1025:1025"
-      - "8025:8025"
