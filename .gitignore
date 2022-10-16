@@ -1,0 +1,15 @@
+docker/services/nginx/sites/*.conf
+
+!docker/volumes/mysql
+docker/volumes/mysql/*
+!docker/volumes/mysql/.gitkeep
+
+!docker/volumes/redis
+docker/volumes/redis/*
+docker/volumes/redis/*
+!docker/volumes/redis/.gitkeep
+!docker/volumes/redis/.gitkeep
+
+.DS_Store
+.idea
+.env

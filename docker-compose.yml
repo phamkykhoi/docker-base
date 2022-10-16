@@ -1,0 +1,94 @@
+version: "3.8"
+services:
+  # Application
+  app:
+    build:
+      context: ./docker/services/app
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+      # - ./docker/services/app/php8.1.ini:/usr/local/etc/php/conf.d/php8.1.ini
+  # php7.2
+  php7.2:
+    build:
+      context: ./docker/services/php7.2
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+  # php7.3
+  php7.3:
+    build:
+      context: ./docker/services/php7.3
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+  # php7.4
+  php7.4:
+    build:
+      context: ./docker/services/php7.4
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+  # php8.0
+  php8.0:
+    build:
+      context: ./docker/services/php8.0
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+  # Web Server
+  nginx:
+    build:
+      context: ./docker/services/nginx
+      dockerfile: nginx.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
+    ports:
+      - "80:80"
+  # Database
+  database:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: database
+    restart: always
+    volumes:
+      - ./docker/volumes/mysql:/var/lib/mysql
+    environment:
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+  #phpmyadmin
+  phpmyadmin:
+    build: ./docker/services/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "8888:80"
+    depends_on:
+      - "database"
+  # Caching
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./docker/volumes/redis:/data
+    ports:
+      - "6379:6379"
+  # Mailing Server
+  mailhog:
+    image: mailhog/mailhog:latest
+    logging:
+      driver: "none"
+    ports:
+      - "1025:1025"
+      - "8025:8025"
