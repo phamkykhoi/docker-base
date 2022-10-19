@@ -51,3 +51,11 @@ server {
 
 ```
 
+Step6: Add hosts
+sudo /etc/hosts
+
+Add this content 
+
+127.0.0.1 api.kakei.dev.com
+
+
