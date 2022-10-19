@@ -44,11 +44,7 @@ server {
         root /var/www/letsencrypt/;
         log_not_found off;
     }
-
-    gzip on;
-    
+    gzip on;    
     client_max_body_size 25m;
 }
-
-
 
