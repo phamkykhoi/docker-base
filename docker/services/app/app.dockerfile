@@ -21,6 +21,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
 # Install PHP extensions
 
 # Graphics Draw
@@ -43,6 +44,8 @@ RUN docker-php-ext-install pdo_mysql
 #Enable extension
 RUN docker-php-ext-enable mbstring
 RUN docker-php-ext-enable exif
+
+RUN apt-get install -y ffmpeg
 
 RUN echo "file_uploads = On\n" \
     "memory_limit = 500M\n" \
