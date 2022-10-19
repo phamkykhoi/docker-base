@@ -14,6 +14,7 @@ Create new file docker/services/nginx/sites/api.kakei.conf
 
 Paste this content
 
+```
 server {
     listen 80;
 
@@ -47,4 +48,6 @@ server {
     gzip on;    
     client_max_body_size 25m;
 }
+
+```
 
