@@ -5,8 +5,7 @@ function _up() {
 }
 
 function _stop() {
-  docker-compose --env-file .env stop
-  docker-compose down
+  docker-compose --env-file .env down 
 }
 
 function _rebuild() {
