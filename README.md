@@ -52,7 +52,8 @@ server {
 ```
 
 Step6: Add hosts
-sudo /etc/hosts
+sudo /etc/hosts 
+On window: windows/system32/hosts 
 
 Add this content 
 
