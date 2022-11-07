@@ -13,6 +13,8 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 
 RUN install-php-extensions zip
 
+RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+
 # Miscellaneous
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install exif

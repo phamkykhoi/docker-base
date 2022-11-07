@@ -10,6 +10,8 @@ RUN install-php-extensions zip
 
 RUN pecl install redis && docker-php-ext-enable redis
 
+RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+
 # # Miscellaneous
 RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install exif

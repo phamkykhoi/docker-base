@@ -85,3 +85,10 @@ services:
       - ./docker/volumes/redis:/data
     ports:
       - "6379:6379"
+  laravel_echo_server:
+    build:
+      context: ./docker/services/laravel_echo_server
+      dockerfile: Dockerfile
+    volumes:
+      - .env:/var/www/laravel_echo_server/.env
+    restart: unless-stopped

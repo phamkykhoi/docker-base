@@ -14,6 +14,8 @@ RUN install-php-extensions zip
 
 RUN pecl install redis && docker-php-ext-enable redis
 
+RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+
 RUN echo "file_uploads = On\n" \
     "memory_limit = 500M\n" \
     "upload_max_filesize = 500M\n" \
