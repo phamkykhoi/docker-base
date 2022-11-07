@@ -10,7 +10,7 @@ Step4: Run command ./docker.sh start
 
 Step5: Create virtual host for virtual domain in nginx
 
-Create new file docker/services/nginx/sites/api.kakei.conf
+Create new file docker/services/nginx/sites/api.project_name.conf
 
 Paste this content
 
@@ -18,8 +18,8 @@ Paste this content
 server {
     listen 80;
 
-    server_name api.kakei.dev.com;
-    root /var/www/kakei-api/public;
+    server_name api.yourdomain.dev.com;
+    root /var/www/project_folder/public;
     index index.php index.html index.htm;
 
     location / {
@@ -52,10 +52,11 @@ server {
 ```
 
 Step6: Add hosts
-sudo /etc/hosts
+sudo /etc/hosts 
+On window: windows/system32/hosts 
 
 Add this content 
 
-127.0.0.1 api.kakei.dev.com
+127.0.0.1 api.yourdomain.dev.com
 
 
