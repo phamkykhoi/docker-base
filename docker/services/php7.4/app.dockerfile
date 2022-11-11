@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
 # Multibyte String
 RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring
 
+RUN docker-php-ext-install gd
+
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
 RUN install-php-extensions zip
