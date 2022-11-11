@@ -3,6 +3,7 @@ RUN apt-get update && apt-get install -y \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
 		libpng-dev \
+        libicu-dev \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install -j$(nproc) gd
 
@@ -10,6 +11,8 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring
 
 RUN docker-php-ext-install gd
+
+RUN docker-php-ext-configure intl & docker-php-ext-install intl
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
@@ -23,7 +26,7 @@ RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
 
 RUN echo "file_uploads = On\n" \
-    "memory_limit = 500M\n" \
+    "memory_limit = 1000048MM\n" \
     "upload_max_filesize = 500M\n" \
     "post_max_size = 500M\n" \
     "max_execution_time = 600\n" \
