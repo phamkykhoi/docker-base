@@ -1,5 +1,10 @@
 FROM php:8.0-fpm
 
+ARG UID
+ARG GID
+ARG USER_NAME
+ARG GROUP_NAME
+
 WORKDIR /var/www
 
 RUN apt-get update && apt-get install -y \
@@ -10,24 +15,23 @@ RUN apt-get update && apt-get install -y \
     locales \
     unzip \
     vim \
-    zip
-
-COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
-
-RUN install-php-extensions zip
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-
-# Graphics Draw
-RUN apt-get update && apt-get install -y \
+    zip \
+    jq \
+    libzip-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
+    imagemagick libmagickwand-dev \
+    libicu-dev \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install pdo pdo_mysql mysqli exif zip intl
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Multibyte String
 RUN apt-get update && apt-get install -y libonig-dev && docker-php-ext-install mbstring
@@ -45,6 +49,8 @@ RUN echo "file_uploads = On\n" \
     "post_max_size = 500M\n" \
     "max_execution_time = 600\n" \
     > /usr/local/etc/php/conf.d/uploads.ini
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
