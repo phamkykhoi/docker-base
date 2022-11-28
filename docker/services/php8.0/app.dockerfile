@@ -1,10 +1,5 @@
 FROM php:8.0-fpm
 
-ARG UID
-ARG GID
-ARG USER_NAME
-ARG GROUP_NAME
-
 WORKDIR /var/www
 
 RUN apt-get update && apt-get install -y \
