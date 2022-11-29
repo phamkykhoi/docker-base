@@ -10,29 +10,29 @@ services:
       - ${APP_CODE_PATH_HOST}:/var/www
       # - ./docker/services/app/php8.1.ini:/usr/local/etc/php/conf.d/php8.1.ini
   # php7.2
-  # php7.2:
-  #   build:
-  #     context: ./docker/services/php7.2
-  #     dockerfile: app.dockerfile
-  #   working_dir: /var/www
-  #   volumes:
-  #     - ${APP_CODE_PATH_HOST}:/var/www
+  php7.2:
+    build:
+      context: ./docker/services/php7.2
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
   # php7.3
-  # php7.3:
-  #   build:
-  #     context: ./docker/services/php7.3
-  #     dockerfile: app.dockerfile
-  #   working_dir: /var/www
-  #   volumes:
-  #     - ${APP_CODE_PATH_HOST}:/var/www
+  php7.3:
+    build:
+      context: ./docker/services/php7.3
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
   # php7.4
-  # php7.4:
-  #   build:
-  #     context: ./docker/services/php7.4
-  #     dockerfile: app.dockerfile
-  #   working_dir: /var/www
-  #   volumes:
-  #     - ${APP_CODE_PATH_HOST}:/var/www
+  php7.4:
+    build:
+      context: ./docker/services/php7.4
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ${APP_CODE_PATH_HOST}:/var/www
   # php8.0
   # php8.0:
   #   build:
