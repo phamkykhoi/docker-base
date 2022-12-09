@@ -28,7 +28,10 @@ server {
 
     location ~ \.php$ {
         try_files $uri /index.php =404;
-        fastcgi_pass app:9000;
+        fastcgi_pass app:9000; # for php 8.1
+        #fastcgi_pass php8.0:9000; # for php 8.0
+        #fastcgi_pass php7.4:9000; # for php 7.4
+        #fastcgi_pass php7.3:9000; # for php 7.3
         fastcgi_index index.php;
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
@@ -58,5 +61,7 @@ On window: windows/system32/hosts
 Add this content 
 
 127.0.0.1 api.yourdomain.dev.com
+
+
 
 
