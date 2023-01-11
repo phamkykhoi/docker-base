@@ -58,6 +58,8 @@ Step6: Add hosts
 sudo /etc/hosts 
 On window: windows/system32/hosts 
 
+Step7: Restart nginx
+Run command ./rebuild.sh nginx
 Add this content 
 
 127.0.0.1 api.yourdomain.dev.com
