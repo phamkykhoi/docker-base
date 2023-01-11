@@ -64,6 +64,8 @@ Add this content
 
 127.0.0.1 api.yourdomain.dev.com
 
-
+Note: 
+- exec to docker by command  ./docker.sh ssh
+- You can see other command in file docker.sh
 
 
